@@ -8,6 +8,8 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
+route::get('/tarea',[TareaController::class,'index']) ->name(name:'tarea.index');
+
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
