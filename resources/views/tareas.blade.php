@@ -10,32 +10,25 @@
         No hay tareas registradas.
     </div>
 @else
-    <div class="row row-cols-1 row-cols-md-2 g-4">
-        @foreach ($tareas as $tarea)
-            <div class="col">
-                <div class="card shadow-sm h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $tarea->titulo }}</h5>
-                        <p class="card-text"><strong>Autor:</strong> {{ $tarea->autor }}</p>
-                        @php
-                            $badgeClass = match($tarea->titulo) {
-                                str_contains($tarea->titulo, 'Laravel'), str_contains($tarea->titulo, 'PHP') => 'bg-primary',
-                                str_contains($tarea->titulo, 'Java') => 'bg-success',
-                                str_contains($tarea->titulo, 'Flutter') => 'bg-info text-dark',
-                                default => 'bg-secondary'
-                            };
-                        @endphp
-                        <span class="badge {{ $badgeClass }}">
-                            @if(str_contains($tarea->titulo, 'Laravel') || str_contains($tarea->titulo, 'PHP')) PHP
-                            @elseif(str_contains($tarea->titulo, 'Java')) Java
-                            @elseif(str_contains($tarea->titulo, 'Flutter')) Flutter
-                            @else Otro
-                            @endif
-                        </span>
-                    </div>
-                </div>
-            </div>
-        @endforeach
+    <div class="d-flex justify-content-center">
+        <table class="table table-bordered table-striped" style="width: auto; min-width: 50%;">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Título</th>
+                    <th>Autor</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($tareas as $tarea)
+                    <tr>
+                        <td>{{ $tarea->id }}</td>
+                        <td>{{ $tarea->titulo }}</td>
+                        <td>{{ $tarea->autor }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
 @endif
 @endsection

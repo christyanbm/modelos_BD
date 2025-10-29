@@ -21,7 +21,7 @@ class TareaController extends Controller
      */
     public function create()
     {
-        return view('tareas.create');
+
     }
 
     /**
@@ -29,14 +29,7 @@ class TareaController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'titulo' => 'required|string|max:255',
-            'autor' => 'required|string|max:255',
-        ]);
 
-        Tarea::create($request->all());
-
-        return redirect()->route('tareas.index')->with('success', 'Tarea creada correctamente.');
     }
 
     /**
@@ -44,8 +37,7 @@ class TareaController extends Controller
      */
     public function show($id)
     {
-        $tarea = Tarea::findOrFail($id);
-        return view('tareas.show', compact('tarea'));
+
     }
 
     /**
@@ -53,8 +45,7 @@ class TareaController extends Controller
      */
     public function edit($id)
     {
-        $tarea = Tarea::findOrFail($id);
-        return view('tareas.edit', compact('tarea'));
+
     }
 
     /**
@@ -62,15 +53,7 @@ class TareaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'titulo' => 'required|string|max:255',
-            'autor' => 'required|string|max:255',
-        ]);
 
-        $tarea = Tarea::findOrFail($id);
-        $tarea->update($request->all());
-
-        return redirect()->route('tareas.index')->with('success', 'Tarea actualizada correctamente.');
     }
 
     /**
@@ -78,9 +61,6 @@ class TareaController extends Controller
      */
     public function destroy($id)
     {
-        $tarea = Tarea::findOrFail($id);
-        $tarea->delete();
 
-        return redirect()->route('tareas.index')->with('success', 'Tarea eliminada correctamente.');
     }
 }
