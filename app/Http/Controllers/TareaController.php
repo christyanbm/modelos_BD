@@ -4,62 +4,83 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Tarea;
+
 class TareaController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Muestra una lista de todas las tareas.
      */
     public function index()
     {
-        $tarea = Tarea::all();
-        return view(view:'Tarea.index',data:['tareas'=>$tarea]);
+        $tareas = Tarea::all();
+        return view('tareas', compact('tareas'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Muestra el formulario para crear una nueva tarea.
      */
     public function create()
     {
-        //
+        return view('tareas.create');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Guarda una nueva tarea en la base de datos.
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'titulo' => 'required|string|max:255',
+            'autor' => 'required|string|max:255',
+        ]);
+
+        Tarea::create($request->all());
+
+        return redirect()->route('tareas.index')->with('success', 'Tarea creada correctamente.');
     }
 
     /**
-     * Display the specified resource.
+     * Muestra una tarea específica.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $tarea = Tarea::findOrFail($id);
+        return view('tareas.show', compact('tarea'));
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Muestra el formulario para editar una tarea.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $tarea = Tarea::findOrFail($id);
+        return view('tareas.edit', compact('tarea'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * Actualiza una tarea en la base de datos.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'titulo' => 'required|string|max:255',
+            'autor' => 'required|string|max:255',
+        ]);
+
+        $tarea = Tarea::findOrFail($id);
+        $tarea->update($request->all());
+
+        return redirect()->route('tareas.index')->with('success', 'Tarea actualizada correctamente.');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Elimina una tarea de la base de datos.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $tarea = Tarea::findOrFail($id);
+        $tarea->delete();
+
+        return redirect()->route('tareas.index')->with('success', 'Tarea eliminada correctamente.');
     }
 }
