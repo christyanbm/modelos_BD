@@ -7,59 +7,62 @@ use App\Models\Tarea;
 
 class TareaController extends Controller
 {
-    /**
-     * Muestra una lista de todas las tareas.
-     */
+
     public function index()
     {
         $tareas = Tarea::all();
-        return view('tareas', compact('tareas'));
+        return view('tarea.index', ['tareas' => $tareas]);
     }
 
-    /**
-     * Muestra el formulario para crear una nueva tarea.
-     */
+
     public function create()
-    {
+{
 
-    }
+    $tarea = new Tarea;
+    $tarea->titulo = 'Investigacion';
+    $tarea->autor = 'christian blas';
+    $tarea->descripcion = 'Crear una investigacion sobre laravel';
+    $tarea->save();
 
-    /**
-     * Guarda una nueva tarea en la base de datos.
-     */
+
+    Tarea::create([
+        'titulo' => 'Estudio',
+        'autor' => 'roberto gonzales',
+        'descripcion' => 'Estudiar el framework laravel',
+    ]);
+
+
+    return redirect()->route('tarea.index');
+}
+
+
+
+
     public function store(Request $request)
     {
-
+        //
     }
 
-    /**
-     * Muestra una tarea específica.
-     */
-    public function show($id)
+
+    public function show(string $id)
+    {
+        //
+    }
+
+
+    public function edit(string $id)
     {
 
     }
 
-    /**
-     * Muestra el formulario para editar una tarea.
-     */
-    public function edit($id)
+
+    public function update(Request $request, string $id)
     {
 
     }
 
-    /**
-     * Actualiza una tarea en la base de datos.
-     */
-    public function update(Request $request, $id)
-    {
 
-    }
-
-    /**
-     * Elimina una tarea de la base de datos.
-     */
-    public function destroy($id)
+    public function destroy(string $id)
     {
 
     }
