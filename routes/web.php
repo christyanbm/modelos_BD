@@ -13,7 +13,7 @@ Route::get('/', function () {
 
 Route::get('/tarea', [TareaController::class, 'index'])->name('tarea.index');
 Route::get('/tarea/create', [TareaController::class, 'create'])->name('tarea.create');
-
+route::post('/tarea/store', [TareaController::class, 'store'])->name('tarea.store');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])

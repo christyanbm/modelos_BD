@@ -18,21 +18,23 @@ class TareaController extends Controller
     public function create()
 {
 
-    $tarea = new Tarea;
-    $tarea->titulo = 'Investigacion';
-    $tarea->autor = 'christian blas';
-    $tarea->descripcion = 'Crear una investigacion sobre laravel';
-    $tarea->save();
+    // $tarea = new Tarea;
+    // $tarea->titulo = 'Investigacion';
+    // $tarea->autor = 'christian blas';
+    // $tarea->descripcion = 'Crear una investigacion sobre laravel';
+    // $tarea->save();
 
 
-    Tarea::create([
-        'titulo' => 'Estudio',
-        'autor' => 'roberto gonzales',
-        'descripcion' => 'Estudiar el framework laravel',
-    ]);
+    // Tarea::create([
+    //     'titulo' => 'Estudio',
+    //     'autor' => 'roberto gonzales',
+    //     'descripcion' => 'Estudiar el framework laravel',
+    // ]);
 
 
-    return redirect()->route('tarea.index');
+    // return redirect()->route('tarea.index');
+
+return view('tarea.create');
 }
 
 
