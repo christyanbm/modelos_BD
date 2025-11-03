@@ -34,15 +34,18 @@ class TareaController extends Controller
 
     // return redirect()->route('tarea.index');
 
-return view('tarea.create');
+ return view('tarea.create');
 }
-
-
-
 
     public function store(Request $request)
     {
-        //
+        $tarea = new Tarea;
+        $tarea->titulo = $request->input('titulo');
+        $tarea->autor = $request->input('autor');
+        $tarea->descripcion = $request->input('descripcion');
+        $tarea->save();
+
+        return redirect()->route('tarea.index');
     }
 
 
