@@ -39,13 +39,21 @@ class TareaController extends Controller
 
     public function store(Request $request)
     {
-        $tarea = new Tarea;
-        $tarea->titulo = $request->input('titulo');
-        $tarea->autor = $request->input('autor');
-        $tarea->descripcion = $request->input('descripcion');
-        $tarea->save();
+        // $tarea ::create($request->all());
 
-        return redirect()->route('tarea.index');
+
+
+         $tarea = new Tarea;
+         $tarea->titulo = $request->input('titulo');
+         $tarea->autor = $request->input('autor');
+         $tarea->descripcion = $request->input('descripcion');
+         $tarea->save();
+
+        // return redirect()->route('tarea.index');
+
+        // Tarea::create($request->all());
+        // return redirect()->route('tarea.index');
+
     }
 
 
