@@ -43,16 +43,22 @@ class TareaController extends Controller
 
 
 
-         $tarea = new Tarea;
-         $tarea->titulo = $request->input('titulo');
-         $tarea->autor = $request->input('autor');
-         $tarea->descripcion = $request->input('descripcion');
-         $tarea->save();
+        //  $tarea = new Tarea;
+        //  $tarea->titulo = $request->input('titulo');
+        //  $tarea->autor = $request->input('autor');
+        //  $tarea->descripcion = $request->input('descripcion');
+        //  $tarea->save();
 
         // return redirect()->route('tarea.index');
 
-        // Tarea::create($request->all());
-        // return redirect()->route('tarea.index');
+        $request->validate([
+            'titulo' => 'required|max:100|min:6',
+            'autor' => 'required|max:100|min:6',
+            'descripcion' => 'required|max:100|min:10',
+        ]);
+
+         Tarea::create($request->all());
+         return redirect()->route('tarea.index');
 
     }
 
@@ -71,7 +77,13 @@ class TareaController extends Controller
 
     public function update(Request $request, string $id)
     {
-
+        $request->validate([
+            'titulo' => 'required|max:100|min:6',
+            'autor' => 'required|max:100|min:6',
+            'descripcion' => 'required|max:100|min:10',
+        ]);
+       $tarea -> update($request->all());
+       return redirect()->route('tarea.index');
     }
 
 

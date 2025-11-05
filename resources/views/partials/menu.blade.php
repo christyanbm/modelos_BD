@@ -2,10 +2,10 @@
     <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="{{ route('home') }}">
             <span class="badge bg-light text-primary me-2 rounded-circle"
-                  style="width:36px;height:36px;display:inline-flex;align-items:center;justify-content:center;font-weight:700;">
-                L
+                  style="width:40px;height:40px;display:inline-flex;align-items:center;justify-content:center;font-weight:800;">
+                CGBM
             </span>
-            <span class="ms-1 fw-bold">Laravel</span>
+            <span class="ms-1 fw-bold">Christian laravel</span>
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
