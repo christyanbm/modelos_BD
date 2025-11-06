@@ -67,7 +67,7 @@ class TareaController extends Controller
     }
 
 
-    public function edit(string $id)
+    public function edit(Tarea $tarea, string $id)
     {
         $tarea = Tarea::findOrFail($id);
         return view('tarea.edit', compact('id', 'tarea'));
