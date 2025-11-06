@@ -9,11 +9,11 @@
         @csrf
         <div class="mb-3">
             <label for="titulo" class="form-label">Título</label>
-            <input type="text" class="form-control" id="titulo" name="titulo" value="{{old('titulo')}}" required>
+            <input type="text" class="form-control" id="titulo" name="titulo" value="{{$tarea -> titulo}}" required>
         </div>
         <div class="mb-3">
             <label for="autor" class="form-label">Autor</label>
-            <input type="text" class="form-control" id="autor" name="autor" value="{{old('autor')}}" required>
+            <input type="text" class="form-control" id="autor" name="autor" value="{{$tarea-> autor}}" required>
         </div>
         <div class="mb-3">
             <label for="descripcion" class="form-label">Descripción</label>
