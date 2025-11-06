@@ -14,6 +14,8 @@ Route::get('/', function () {
 Route::get('/tarea', [TareaController::class, 'index'])->name('tarea.index');
 Route::get('/tarea/create', [TareaController::class, 'create'])->name('tarea.create');
 route::post('/tarea/store', [TareaController::class, 'store'])->name('tarea.store');
+Route::get('/tarea/edit/{id}', [TareaController::class], 'edit')->name('tarea.edit');
+route::put('/tarea/update/{id}', [TareaController::class, 'update'])->name('tarea.update');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])

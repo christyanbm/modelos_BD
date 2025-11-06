@@ -37,11 +37,9 @@ class TareaController extends Controller
  return view('tarea.create');
 }
 
-    public function store(Request $request)
+    public function store(TareaRequest $request)
     {
         // $tarea ::create($request->all());
-
-
 
         //  $tarea = new Tarea;
         //  $tarea->titulo = $request->input('titulo');
@@ -51,11 +49,11 @@ class TareaController extends Controller
 
         // return redirect()->route('tarea.index');
 
-        $request->validate([
-            'titulo' => 'required|max:100|min:6',
-            'autor' => 'required|max:100|min:6',
-            'descripcion' => 'required|max:100|min:10',
-        ]);
+       // $request->validate([
+         //   'titulo' => 'required|max:100|min:6',
+           // 'autor' => 'required|max:100|min:6',
+           // 'descripcion' => 'required|max:100|min:10',
+       // ]);
 
          Tarea::create($request->all());
          return redirect()->route('tarea.index');
@@ -71,11 +69,12 @@ class TareaController extends Controller
 
     public function edit(string $id)
     {
-
+        $tarea = Tarea::findOrFail($id);
+        return view('tarea.edit', compact('id', 'tarea'));
     }
 
 
-    public function update(Request $request, string $id)
+    public function update(TareaRequest $request, string $id)
     {
         $request->validate([
             'titulo' => 'required|max:100|min:6',
