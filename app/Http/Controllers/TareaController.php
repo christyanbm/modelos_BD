@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\TareaRequest;
 use App\Models\Tarea;
 
 class TareaController extends Controller
@@ -56,7 +57,7 @@ class TareaController extends Controller
        // ]);
 
          Tarea::create($request->all());
-         return redirect()->route('tarea.index');
+         return redirect()->route('tarea.index')->with('success', 'Tarea creada exitosamente');
 
     }
 
