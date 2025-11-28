@@ -8,7 +8,7 @@
 </head>
 <body>
     @include('partials.menu')
-    @include('components.alert')
+
 
     <div class="container mt-4">
         @yield('contenido')
