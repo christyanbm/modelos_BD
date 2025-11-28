@@ -17,26 +17,26 @@ class TareaController extends Controller
 
 
     public function create()
-{
+    {
 
-    // $tarea = new Tarea;
-    // $tarea->titulo = 'Investigacion';
-    // $tarea->autor = 'christian blas';
-    // $tarea->descripcion = 'Crear una investigacion sobre laravel';
-    // $tarea->save();
-
-
-    // Tarea::create([
-    //     'titulo' => 'Estudio',
-    //     'autor' => 'roberto gonzales',
-    //     'descripcion' => 'Estudiar el framework laravel',
-    // ]);
+        // $tarea = new Tarea;
+        // $tarea->titulo = 'Investigacion';
+        // $tarea->autor = 'christian blas';
+        // $tarea->descripcion = 'Crear una investigacion sobre laravel';
+        // $tarea->save();
 
 
-    // return redirect()->route('tarea.index');
+        // Tarea::create([
+        //     'titulo' => 'Estudio',
+        //     'autor' => 'roberto gonzales',
+        //     'descripcion' => 'Estudiar el framework laravel',
+        // ]);
 
- return view('tarea.create');
-}
+
+        // return redirect()->route('tarea.index');
+
+        return view('tarea.create');
+    }
 
     public function store(TareaRequest $request)
     {
@@ -50,45 +50,43 @@ class TareaController extends Controller
 
         // return redirect()->route('tarea.index');
 
-       // $request->validate([
-         //   'titulo' => 'required|max:100|min:6',
-           // 'autor' => 'required|max:100|min:6',
-           // 'descripcion' => 'required|max:100|min:10',
-       // ]);
+        // $request->validate([
+        //   'titulo' => 'required|max:100|min:6',
+        //   'autor' => 'required|max:100|min:6',
+        //   'descripcion' => 'required|max:100|min:10',
+        // ]);
 
-         Tarea::create($request->all());
-         return redirect()->route('tarea.index')->with('success', 'Tarea creada exitosamente');
-
+        Tarea::create($request->all());
+        return redirect()->route('tarea.index')->with('success', 'Tarea creada exitosamente');
     }
 
 
     public function show(string $id)
     {
-        //
+        $tarea = Tarea::findOrFail($id);
+        return view('tarea.show', compact('tarea'));
     }
 
 
-    public function edit(Tarea $tarea, string $id)
+    public function edit(string $id)
     {
         $tarea = Tarea::findOrFail($id);
-        return view('tarea.edit', compact('id', 'tarea'));
+        return view('tarea.edit', compact('tarea'));
     }
 
 
     public function update(TareaRequest $request, string $id)
     {
-        $request->validate([
-            'titulo' => 'required|max:100|min:6',
-            'autor' => 'required|max:100|min:6',
-            'descripcion' => 'required|max:100|min:10',
-        ]);
-       $tarea -> update($request->all());
-       return redirect()->route('tarea.index');
+        $tarea = Tarea::findOrFail($id);
+        $tarea->update($request->validated());
+        return redirect()->route('tarea.index')->with('success', 'Tarea actualizada exitosamente');
     }
 
 
     public function destroy(string $id)
     {
-
+        $tarea = Tarea::findOrFail($id);
+        $tarea->delete();
+        return redirect()->route('tarea.index')->with('success', 'Tarea eliminada exitosamente');
     }
 }

@@ -3,21 +3,21 @@
 @section('titulo', 'Tareas')
 
 @section('contenido')
-    <h2>Editando una nueva tarea</h2>
-    <form action="{{ route('tarea.update') }}" method="POST">
-        @method('PUT')
+    <h2>Editando tarea</h2>
+    <form action="{{ route('tarea.update', $tarea->id) }}" method="POST">
         @csrf
+        @method('PUT')
         <div class="mb-3">
             <label for="titulo" class="form-label">Título</label>
-            <input type="text" class="form-control" id="titulo" name="titulo" value="{{$tarea -> titulo}}" required>
+            <input type="text" class="form-control" id="titulo" name="titulo" value="{{ old('titulo', $tarea->titulo) }}" required>
         </div>
         <div class="mb-3">
             <label for="autor" class="form-label">Autor</label>
-            <input type="text" class="form-control" id="autor" name="autor" value="{{$tarea-> autor}}" required>
+            <input type="text" class="form-control" id="autor" name="autor" value="{{ old('autor', $tarea->autor) }}" required>
         </div>
         <div class="mb-3">
             <label for="descripcion" class="form-label">Descripción</label>
-            <textarea class="form-control" id="descripcion" name="descripcion" rows="3" required>{{ old('descripcion') }}</textarea>
+            <textarea class="form-control" id="descripcion" name="descripcion" rows="3" required>{{ old('descripcion', $tarea->descripcion) }}</textarea>
         </div>
         <button type="submit" class="btn btn-primary">Guardar Tarea</button>
         <button type="reset" class="btn btn-secondary">Limpiar</button>

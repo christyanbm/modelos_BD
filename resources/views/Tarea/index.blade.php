@@ -4,7 +4,8 @@
 
 @section('contenido')
     <h2>Listado de Tareas</h2>
-    <button class="btn btn-primary mb-3" onclick="window.location='{{ route('tarea.create') }}'">Crear Nueva Tarea</button>
+    <button class="btn btn-primary mb-3" onclick="window.location='{{ route('tarea.create') }}'">Crear Nueva Tarea
+    </button>
     <table class="table table-striped table-bordered table-hover">
         <thead class="table-dark text-center">
             <tr>
@@ -27,11 +28,22 @@
                     <td>{{ $tarea->created_at->format('d/m/Y H:i') }}</td>
                     <td>{{ $tarea->updated_at->format('d/m/Y H:i') }}</td>
                     <td>
-                        <button class="btn btn-info btn-sm" >Ver</button>
-                        <button class="btn btn-warning btn-sm" >Editar</button>
-                        <button class="btn btn-danger btn-sm" >Eliminar</button>
-                </td>
+                        <button class="btn btn-info btn-sm"
+                            onclick="window.location='{{ route('tarea.show', $tarea->id) }}'">Ver</button>
+
+                        <button class="btn btn-warning btn-sm"
+                            onclick="window.location='{{ route('tarea.edit', $tarea->id) }}'">Editar</button>
+
+                        <form action="{{ route('tarea.destroy', $tarea->id) }}" method="POST" class="d-inline"
+                            onsubmit="return confirm('¿Eliminar esta tarea?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
             @endforeach
         </tbody>
     </table>
 @endsection
+
