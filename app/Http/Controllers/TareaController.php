@@ -57,7 +57,7 @@ class TareaController extends Controller
        // ]);
 
          Tarea::create($request->all());
-         return redirect()->route('tarea.index')->with('success', 'Tarea creada exitosamente');
+         return redirect()->route('tarea.index');
 
     }
 

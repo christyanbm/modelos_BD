@@ -1,5 +1,5 @@
 @if ($message = session('success'))
-    <div class="alert alert-success">
+    <div class="alert alert-success" >
         {{ $message }}
     </div>
 @elseif ($message = session('error'))
