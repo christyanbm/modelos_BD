@@ -12,9 +12,9 @@ class TareaFactory extends Factory
     public function definition()
     {
         return [
-            'titulo'       => $this->faker->sentence(3),
-            'autor'        => $this->faker->name(),
-            'descripcion'  => $this->faker->sentence(10),
+            'titulo'       => fake()->sentence(3),
+            'autor'        => fake()->name(),
+            'descripcion'  => fake()->paragraph(),
             'created_at'   => now(),
             'updated_at'   => now(),
         ];
