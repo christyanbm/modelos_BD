@@ -13,7 +13,7 @@ class TareaPolicy
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return in_array($user->role, ['admin', 'editor']);
     }
 
     /**
@@ -21,7 +21,7 @@ class TareaPolicy
      */
     public function view(User $user, Post $post): bool
     {
-        return false;
+        return in_array($user->role, ['admin', 'editor']);
     }
 
     /**
@@ -29,7 +29,7 @@ class TareaPolicy
      */
     public function create(User $user): bool
     {
-        return false;
+        return in_array($user->role, ['admin', 'editor']);
     }
 
     /**
@@ -37,7 +37,7 @@ class TareaPolicy
      */
     public function update(User $user, Post $post): bool
     {
-        return false;
+        return in_array($user->role, ['admin', 'editor']);
     }
 
     /**
@@ -45,7 +45,7 @@ class TareaPolicy
      */
     public function delete(User $user, Post $post): bool
     {
-        return false;
+        return in_array($user->role, ['admin', 'editor']);
     }
 
     /**
@@ -53,7 +53,7 @@ class TareaPolicy
      */
     public function restore(User $user, Post $post): bool
     {
-        return false;
+        return in_array($user->role, ['admin', 'editor']);
     }
 
     /**

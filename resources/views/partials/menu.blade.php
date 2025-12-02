@@ -12,7 +12,7 @@
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
+        @if (auth()->check() && auth()->user()->hasRole('editor'))
         <div class="collapse navbar-collapse" id="navbarNav">
             <!-- Mover las rutas hacia la izquierda -->
             <ul class="navbar-nav me-auto nav-pills">
@@ -27,12 +27,14 @@
                         Tareas
                     </a>
                 </li>
-
+        @endif
+        @if (auth()->check() && auth()->user()->hasRole('admin'))
                 <li class="nav-item px-1">
                     <a class="nav-link {{ request()->routeIs('tarea.create') ? 'active' : '' }}" href="{{ route('tarea.create') }}">
                         Crear
                     </a>
                 </li>
+                @endif
             </ul>
 
 
